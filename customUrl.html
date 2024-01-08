@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p>This page will redirect you to a dynamically constructed URL in 5 seconds.</p>
+
+    <script>
+      function parseURLParameters() {
+        const url = window.location.href;
+        const urlObject = new URL(url);
+      
+        const searchParams = urlObject.searchParams;
+        
+        const scheme = searchParams.get('scheme');
+        const host = searchParams.get('host');
+        const path = searchParams.get('path');
+        // Construct the dynamic URL using the date components
+        var dynamicURL = scheme + '://' + host + '/' + path;
+        return dynamicURL;
+      }
+      // Function to redirect after a certain time
+      function redirectToDynamicURL(u) {
+          window.location.href = u;
+      }
+      let u = parseURLParameters();
+      // Redirect after 5 seconds
+      setTimeout(() => { redirectToDynamicURL(u)}, 5000, u);
+    </script>
+</body>
+</html>
